@@ -1,6 +1,6 @@
 \documentclass{entcs} \usepackage{entcsmacro}
 \usepackage{graphicx}
-\sloppy
+%\sloppy
 % The following is enclosed to allow easy detection of differences in
 % ascii coding.
 % Upper-case    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
@@ -26,19 +26,24 @@
 \begin{document}
 \begin{frontmatter}
   \title{Formalizing Abstract Computability : Turing Categories in Coq} 
-  \author{Polina Vinogradova
-  	\thanksref{ALL}\thanksref{myemail}}
+  \author{Polina Vinogradova}
+  %	\thanksref{ALL}
+  	%\thanksref{myemail}}
   \address{Electrical Engineering and Computer Science\\ University of Ottawa\\
     Ottawa, Canada} 
- \author{Amy Felty\thanksref{coemail}}
+ \author{Amy Felty}
+ 	%\thanksref{coemail}}
   \address{Electrical Engineering and Computer Science\\University of Ottawa\\
-    Ottawa, Canada} \thanks[ALL]{Thanks
-    to everyone who should be thanked} \thanks[myemail]{Email:
-    \href{mailto:myuserid@mydept.myinst.myedu} {\texttt{\normalshape
-        myuserid@mydept.myinst.myedu}}} \thanks[coemail]{Email:
-    \href{mailto:couserid@codept.coinst.coedu} {\texttt{\normalshape
-        couserid@codept.coinst.coedu}}}
- \author{Philip Scott\thanksref{coemail}}
+    Ottawa, Canada} 
+%\thanks[ALL]{Thanks
+%    to everyone who should be thanked} 
+%\thanks[myemail]{Email:
+%    \href{mailto:myuserid@mydept.myinst.myedu} {\texttt{\normalshape
+ %       myuserid@mydept.myinst.myedu}}} \thanks[coemail]{Email:
+%    \href{mailto:couserid@codept.coinst.coedu} {\texttt{\normalshape
+%        couserid@codept.coinst.coedu}}}
+ \author{Philip Scott}
+ 	%\thanksref{coemail}}
   \address{Mathematics and Statistics\\ University of Ottawa\\
     Ottawa, Canada} 
 
@@ -102,7 +107,7 @@ Here, the {\tt \small C : Category} is a parameter this class requires for insta
 	\item[(v)] Ranges and Retractions lemma~\cite{MyThesis} 
 \end{itemize}
 
-{\bfseries PCA and CompA.} The underlying computational structure in a Turing category is a non-associative algebra called a partial combinatory algebra (abbreviated PCA), which consists of a pair $(A, \bullet)$ of an object $A \in \mathsf{C}$ and a map $A \times A \to A$ in a cartesian restriction category $\mathsf{C}$, as well a combinatory completeness condition that $(A, \bullet)$ must satisfy in this category. Give
+{\bfseries PCA and CompA.} The underlying computational structure in a Turing category is a non-associative algebra called a partial combinatory algebra (abbreviated PCA), which consists of a pair $(A, \bullet)$ of an object $A \in \mathsf{C}$ and a map $A \times A \to A$ in a cartesian restriction category $\mathsf{C}$, as well a combinatory completeness condition that $(A, \bullet)$ must satisfy in this category. Given and object $A$ in an arbitrary restriction category $\mathsf{C}$, the full subcategory of all objects of the form $A^n$ is denoted Comp($A$), or Comp($\mathbb{A}$), whenever a partial combinatory algebra structure $(A, \bullet)$ exists in $\mathsf{C}$ (and therefore in Comp($\mathbb{A}$) also). The Karoubi envelope, i.e. the category of formally split idempotents, of the category Comp($A$) is denoted Split(Comp($A$)), or Split(Comp($\mathbb{A}$)), whenever $\mathsf{C}$ admits a PCA. We have formalized Comp($A$) and Split(Comp($A$)) as cartesian restriction categories. Furthermore, in the process, we have discovered additional conditions required to show intuitionistically that Split(Comp($A$)) is a cartesian restriction category. 
 
 {\bfseries Turing.} A Turing category is a category that contains a special kind of structure that models computation. In particular, a category $\mathsf{T}$ is Turing if contains an object $A \in \mathsf{T}$, called a Turing object, as well as a morphism $\bullet : A \times A \to A$, called a Turing morphism, such each map in $\mathsf{T}$ factors via $\bullet$ in a specific way, similar to the factorization of maps within Cartesian Closed category (CCC) structure. Each object in $\mathsf{T}$ is a retract of the Turing object. Now the pair $(A, \bullet)$ is called a Turing structure and constitutes a PCA. This structure is not necessarily unique in $\mathsf{T}$.
 
@@ -138,45 +143,24 @@ This formalization gives the definition and the semantics of the language of par
 
 \noindent where the resulting proposition is provable whenever, informally, the given partial recursive function, applied to the given list of natural numbers, outputs the natural number (given as the third argument). Note that this `output' is unique, so we are able to build a partial map in the {\tt \small Par\_Cat} sense, described above. In order to build a map that is Kleene-equal to the computation a particular {\tt \small f\_prf : prf} represents, we use the {\tt \small converges\_to} relation to give the domain predicate, and add a special case of an axiom of choice to select, given a list {\tt \small ln: list nat}, a natural number as output \textit{in the case when there is a proof that this output necessarily exists} (i.e. a proof {\tt \small pf : exists n, converges\_to f\_prf ln n}). 
 
+Now, we formally consider a partial map with $m$ components as a map in the category of partial recursive maps whenever there is a proof that it each of its components is Kleene-equal to a {\tt \small prf} computation. This category inherits cartesian restriction structure defined in larger category, {\tt \small Par\_Cat}, however, we have additionally defined a Turing object (i.e. the natural numbers) and proved that the necessary diagrams commute (as maps in the larger {\tt \small Par\_Cat} category), thus demonstrating that it is indeed a Turing category.
+
 \section{Conclusion and Future Work}
 
 The framework we have built contains the necessary tools to study abstract recursion formally. Therefore, it gives us the advantage that we do not require to model partial functions using total functions or relations (or total functions built using relations) in order to study partial recursion using the (strongly normalizing) formal language CIC, with underlying intuitionistic logic. 
 
-There are a number of promising directions to advance this formalization, the most natural of which being the formalization of the Turing category-formulated abstraction of Rice's theorem, as well as the categorical concepts required for stating it formally, including joins and meets~\cite{Latvia}. Building on our framework even further, it would be an extremely interesting and innovative pursuit to use it to study computational complexity classes of total maps in Turing categories. Other options for building on this framework could be to formalize monoidal Turing categories (with differential structure) or conduct a formal
+There are a number of promising directions to advance this formalization, the most natural of which being the formalization of the Turing category-formulated abstraction of Rice's theorem, as well as the categorical concepts required for stating it formally, including joins and meets~\cite{Estonia}. Building on our framework even further, it would be an extremely interesting and innovative pursuit to use it to study computational complexity classes of total maps in Turing categories. Other options for building on this framework could be to formalize monoidal Turing categories (with differential structure) or conduct a formal
 study more focused on the PCA's (which, recall, are computation-modeling structures
 at the core of every Turing category) and relationships between them. 
 
 
-\section{Bibliographical references}\label{references}
-ENTCS employs the \texttt{plain} style of bibliographic references in
-which references are listed in alphabetical order, according the the
-first author's last name, and are sequentially numbered. Please
-utilize this style. We have a Bib\TeX\ style file, for those who wish
-to use it. It is the file \texttt{entcs.bst} which is included in this
-package. The basic rules we have employed are the following:
-\begin{itemize}
-\item Authors' names should be listed in alphabetical order, with the
-  first author's last name being the first listing, followed by the
-  author's initials or first name, and with the other authors names
-  listed as \emph{first name, last name}.
-\item Titles of articles in journals should be in \emph{emphasized}
-  type.
-\item Titles of books, monographs, etc.\ should be in quotations.
-\item Journal names should be in plain roman type.
-\item Journal volume numbers should be in boldface type, with the year
-  of publication immediately following in roman type, and enclosed in
-  parentheses.
-\item References to URLs on the net should be ``active'' and the URL
-  itself should be in typewriter font.
-\item Articles should include page numbers.
-\end{itemize}
-The criteria are illustrated in the following.
 
-\begin{thebibliography} %{10}\label{bibliography}
+%\begin{thebibliography}\label{thesisbib}
 	
 	\bibliographystyle{entcs}
 	\bibliography{thesisbib}
 	
-\end{thebibliography}
+	
+%\end{thebibliography}
 
 \end{document}
