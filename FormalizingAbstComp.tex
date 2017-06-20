@@ -22,47 +22,68 @@
 
 \newcommand{\Nat}{{\mathbb N}}
 \newcommand{\Real}{{\mathbb R}}
-\def\lastname{Vinogradova}
+\def\lastname{Vinogradova, Felty, and Scott}
 \begin{document}
-\begin{frontmatter}
-  \title{Formalizing Abstract Computability : Turing Categories in Coq} 
-  \author{Polina Vinogradova}
-  %	\thanksref{ALL}
-  	%\thanksref{myemail}}
-  \address{Electrical Engineering and Computer Science\\ University of Ottawa\\
-    Ottawa, Canada} 
- \author{Amy Felty}
- 	%\thanksref{coemail}}
-  \address{Electrical Engineering and Computer Science\\University of Ottawa\\
-    Ottawa, Canada} 
-%\thanks[ALL]{Thanks
-%    to everyone who should be thanked} 
-%\thanks[myemail]{Email:
-%    \href{mailto:myuserid@mydept.myinst.myedu} {\texttt{\normalshape
- %       myuserid@mydept.myinst.myedu}}} \thanks[coemail]{Email:
-%    \href{mailto:couserid@codept.coinst.coedu} {\texttt{\normalshape
-%        couserid@codept.coinst.coedu}}}
- \author{Philip Scott}
- 	%\thanksref{coemail}}
-  \address{Mathematics and Statistics\\ University of Ottawa\\
-    Ottawa, Canada} 
+	\begin{frontmatter}
+\title{A Logical Framework for Studying Category Theory and Computability}
+\begin{keyword}
+	Category theory, Turing categories, computability, formalization, Calculus of Inductive Constructions (CIC), Coq proof assistant
+\end{keyword}		
+		\author[CS]{Polina Vinogradova\thanksref{emailpv}}
+		\author[CS,Math]{Amy P. Felty\thanksref{emailaf}}
+		\author[Math,CS]{Philip Scott\thanksref{emailps}}
+		\address[CS]{School of Electrical Engineering and Computer Science, University of Ottawa, Ottawa, Canada}
+		\address[Math]{Department of Mathematics and Statistics, University of Ottawa, Ottawa, Canada}
+		\thanks[emailpv]{Email: polina.vino@gmail.com}
+		\thanks[emailaf]{Email: afelty@uottawa.ca}
+		\thanks[emailps]{Email: phil@site.uottawa.ca}
+
 
 \begin{abstract} 
-  	The concept of a recursive function has been extensively studied using traditional tools of computability theory. However, with the development of category-theoretic methods it has become possible to study recursion in a more abstract sense. The particular model this paper is structured around is known as a Turing category. The structure within a Turing category models the notion of partiality as well as recursive computation, and equips us with the tools of category theory to study these concepts. The goal of this work is to build a formal language description of this categorical model. Specifically, we use the Coq proof assistant to formulate informal definitions, propositions and proofs pertaining to Turing categories in the underlying formal language of Coq, the Calculus of Co-inductive Constructions (CIC). Furthermore, we instantiate the more general Turing category formalism with a CIC description of the category which explicitly models the language of partial recursive functions.
+The concept of computable function (as developed by G\"odel, Church, Turing, and Kleene
+in the 1930's) has been extensively studied, leading to the modern subject of recursive function theory. However %with the development of category-theoretic methods 
+recent work by category theorists has led to a more conceptual and abstract foundation
+of computability theory--Turing categories.
+%	it has become possible to study recursion in a more abstract sense. 
+%The particular model this paper is structured around is known as a Turing category. 
+%The structure within 
+A Turing category models the notion of partial map as well as recursive computation,  using 
+methods of categorical algebra to formalize these concepts. The goal of this work is to build a formal language description of this categorical model of computation. Specifically, we use the Coq proof assistant to formulate informal definitions, propositions and proofs pertaining to Turing categories.  This is developed in the underlying formal language of Coq, the Calculus of Co-inductive Constructions (CIC). Furthermore, we instantiate the more general Turing category formalism with a CIC description of the category which explicitly models the language of partial recursive functions.
 \end{abstract}
 \begin{keyword}
   Please list keywords from your paper here, separated by commas.
 \end{keyword}
 \end{frontmatter}
+
+
+
+
 \section{Introduction}\label{intro}
-Traditional computation on the natural numbers, as well as the theory of computability (or recursion) built around it, 
-has historically been the main approach to studying computation in mathematics and computer science, mainly due to its widespread applicability. More recently, there have been several attempts at capturing the essential properties of computation in a broader sense through various mathematical abstractions. Category theory appears to be both general and expressive enough to be the tool of choice for modeling computation in an abstract sense. 
 
-Many concepts of recursion theory have already been effectively modeled categorically, which gave good motivation to find the best possible categorical model to study recursion. The model we study in this thesis is a category-theoretic approach to exploring more general instances of computational systems, referred to as ``Turing Categories", originally introduced by Cockett and Hofstra in~\cite{Turing}. Turing categories are currently the most general computational model, because they model both total and partial computation and can have multiple non-isomorphic objects. 
+Traditional computation theory (G\"odel, Turing, Kleene) originally aimed at capturing the 
+informal notion of computable functions over the natural numbers and computable theories of real numbers
+(e.g. \cite{Turing-Paper,IMM}).  Even before Turing, Church's introduction of lambda calculus \cite{Church}  attempted to capture certain properties of computation in a broader sense,
+through combinatorial manipulation of strings of symbols. It was subsequently shown that the
+numerical (partial) functions computable by these various abstract formalisms for computation coincided, thus suggesting the so-called Church-Turing thesis.  Later independent formalisms
+for defining numerical computation (e.g. Register Machines, Markov's algorithms, etc.) were shown to again lead to the same class of computable numerical partial functions , lending yet more credance to the Church-Turing thesis.  Nevertheless, practical as well as theoretical computer science requires more than just numerical computation:  one has increasingly abstract theories of computation over various data types, of higher-order computation, computation based on various programming language paradigms, newer paradigms of computation (parallel, probabilistic, quantum) etc.  Category theory appears to be both general and expressive enough to be 
+the tool of choice for modeling computation in a these newer, abstract senses. 
 
-Our study of the Turing category computation model takes the form of building a type-theoretic formal language description (formalization) of the relevant concepts. The concepts we have selected to formalize lay the groundwork for (formally) proving abstract interpretations of standard recursion theorems. The key motivation behind taking this approach is the level of organization, consistency, and guaranteed correctness it provides in working with proofs and definitions for which informal formulations may omit important and interesting details. %Note that there has been another project formalizing restriction structure using Agda
+Many concepts of traditional recursion and computation theory have begun to be effectively analyzed categorically.  This includes early fundamental work of Elgot on flowchart semantics,
+and its connections with denotational semantics  (cf.  M. Arbib and A. Manes \cite{MA}), to 
+analysis of Church's theories of lambda calculi (both typed and untyped) in cartesian closed categories and associated higher-order categorical logics (\cite{HOCL}).  In a series of works
+of increasing categorical generality, beginning with Longo and Moggi \cite{LMog}, DiPaola and Heller \cite{DiPao} and culminating in recent work of Cockett and Hofstra \cite{Turing}, we see the beginnings of a new and direct categorical development of the foundations of recursion theory 
 
-Turing category theory can be viewed as an (up until now) informally-presented language that can be used to describe (also informally-presented) formal computation. As computation on a physical computer is a formal procedure, it seems natural to verify that a formal description of it formally fits the selected categorical model. This is the motivating idea and the main objective of this work. There is not a huge amount of work done in this direction of research, specifically, formalizing a category as an instance of an abstract computational model. Furthermore, we are using intuitionistic logic to build the proofs and definitions in this formalization, which further differentiates it from traditional recursion theory reasoning. 
+
+This paper is based on the thesis of the first author. The model we study is the category-theoretic formalism of ``Turing Categories", introduced by Cockett and Hofstra in~\cite{Turing}. Turing categories are a very general computational model, built from a categorical analysis of 
+partial maps in categories. The partial maps of a Turing category arise as the computable maps of a partial combinatory algebra (PCA), see \cite{Turing}.  Moreover,  recent work establishes criteria for 
+determining when various complexity classes of total maps  can be made into a Turing category, 
+\cite{Total}.  Thus the notion of Turing category provides a robust, abstract framework for discussing computation over a wide range of settings. 
+
+Our study of the Turing category computation model takes the form of building a type-theoretic formal language description (formalization) of the relevant concepts. The concepts we have selected to formalize lay the groundwork for (formally) proving abstract interpretations of standard theorems in recursion theory. The key motivation behind  this approach is the level of organization, consistency, and guaranteed correctness it provides in working with proofs and definitions for which informal formulations may omit important and interesting details. 
+
+%Note that there has been another project formalizing restriction structure using Agda
+
+Turing category theory can be viewed as an (up until now) informally-presented language that can be used to describe (informally-presented, but) formal computation. As computation on a physical computer is a precise procedure, it seems natural to verify that a formal description of it exactly fits the selected categorical model. This is the motivating idea and the main objective of this work. There is not a huge amount of work done in this direction of research; specifically, in formalizing a category as an instance of an abstract computational model. Furthermore, because of the nature of Coq, we are using intuitionistic logic to build the proofs and definitions in this formalization.  This further differentiates this development from traditional recursion theory.   
 
 Our intent was to first use an existing formal language and category theory library written in that language to specify the mathematical definitions found in the framework of the Turing Category abstract computation model, as well as the abstracted versions of other types of structures naturally occurring in the traditional computation model, then formally prove (the more abstract versions of) a number of the results from traditional recursion theory. The proof assistant chosen for this purpose is Coq, with the Calculus of (co)Inductive constructions as the underlying formal language, and . The existing category theory library we chose on top of which to build the Turing category formalization and examples, described in~\cite{timanyNewLib}. We also chose to adopt the style of definitions and formalization strategy used in this library. It appears to be the most comprehensive, easy to use and well-structured category theory Coq library. 
 
@@ -76,9 +97,9 @@ In this paper, we divide our explanation of the formalization project according 
 {\texttt{https://github.com/polinavino/Turing-Category-Formalization}}
 
 
-{\bfseries Restriction.} In order to model partial computation using category theory, we need to first axiomatize partiality in a category. In a Turing category, this has been done informally, in terms of a restriction combinator~\cite{Restriction}. A restriction combinator takes a map $f : A \to B$ in a category $\mathsf{C}$ to an idempotent $\overline{f} : A \to A$ in a way that satisfies certain rules, and is in a sense representative of the `domain' of $f$. When a category $\mathsf{C}$ admits such a combinator, it is called a restriction category. 
+{\bfseries Restriction.} In order to model partial computation using category theory, we need to first axiomatize partiality in a category. In a Turing category, this has been done informally, in terms of a restriction combinator~\cite{Restriction}. A restriction combinator takes a map $f : A \to B$ in a category $\mathsf{C}$ to an idempotent $\overline{f} : A \to A$ in a way that satisfies certain rules, and  in a sense axiomatizes the notion of `domain' of $f$. When a category $\mathsf{C}$ admits such a combinator, it is called a {\em restriction category}. 
 
-In addition to requiring a partiality structure, a category wherein we are able to axiomatize computation requires cartesian structure. Now, requiring strict cartesian structure to exist in a restriction category does not provide us with the correct machinery to perform computation. Thus, a weaker version of cartesian structure, which interacts well with restriction structure has been defined~\cite{Turing}. The restriction versions of products and terminal objects are called restriction (or partial) products and restriction-terminal objects, respectively. A category which admits these structures is called a cartesian restriction category. 
+In addition to requiring a partiality structure, a category wherein we are able to axiomatize computation requires cartesian structure. Now, requiring strict cartesian structure to exist in a restriction category does not provide us with the correct machinery to perform computation. Thus, a weaker version of cartesian structure, which interacts well with restriction structure has been defined~\cite{Turing}. The restriction versions of products and terminal objects are called restriction (or partial) products and restriction-terminal objects, respectively. A category which admits these structures is called a {\em cartesian restriction category.} 
 
 In order to formalize these concepts we have followed the style of the category theory Coq library we have selected, using type classes to formalize categorical notions. Type classes are a versatile and convenient way to encapsulate terms and propositions about them into a single term representing its informal counterpart, with a number of features particularly useful for reasoning about category theory. The following is an example of formalizing the notion of a restriction combinator in this way:
 
@@ -128,7 +149,7 @@ In addition, we have formalized the relationship between a Turing category $\mat
 
 \indent Comp($\mathbb{A}$) $\subseteq$ $\mathsf{T}$ $\subseteq$ Split(Comp($\mathbb{A}$))
 
-{\bfseries Range.} Range structure in a category can be expressed in terms of another type of combinator which (whenever it exists in a category) is in a sense dual to the restriction combinator~\cite{RangeI}. The range combinator takes a map $f : A \to B$ to a map $\hat{f} : B \to B$, and, as with the restriction combinator, satisfied a number of axioms. It is related to the notion of open maps in a category, in that whenever all maps in a given category are open, it is a range category. We have chosen to formalize this particular abstraction because in the process of formalizing the motivating examples of the categories of sets and partial maps $\mathsf{Par}$ and the category of computable maps between $n$-fold products of the natural numbers, Comp($\mathbb{N}$), it became apparent that the process of representing partiality using a total formal language presented one of the biggest challenges as well as one of the greatest curiosities. We have formalized a number of results regarding the interactions between range structure and embedding-retraction pairs, as well as a criterion for a Turing category to admit cartesian range structure~\cite{MyThesis}.
+{\bfseries Range.} Range structure in a category can be expressed in terms of another type of combinator which (whenever it exists in a category) is in a sense dual to the restriction combinator~\cite{RangeI}. The range combinator takes a map $f : A \to B$ to a map $\hat{f} : B \to B$, and, as with the restriction combinator, satisfies a number of axioms. It is related to the notion of open maps in a category, in that whenever all maps in a given category are open, it is a range category. We have chosen to formalize this particular abstraction because in the process of formalizing the motivating examples of the categories of sets and partial maps $\mathsf{Par}$ and the category of computable maps between $n$-fold products of the natural numbers, Comp($\mathbb{N}$), it became apparent that the process of representing partiality using a total formal language presented one of the biggest challenges as well as one of the greatest curiosities. We have formalized a number of results regarding the interactions between range structure and embedding-retraction pairs, as well as a criterion for a Turing category to admit cartesian range structure~\cite{MyThesis}.
 
 {\bfseries Par\_Cat.} The category $\mathsf{Par}$ is the motivating example for the categorical structure discussed above, including cartesian restriction and cartesian range structure, but not including Turing or PCA structure. Due to the total nature of computation in the CIC, it is impossible to directly represent a partial map. For this reason, we must define the type of the set of all maps $A \to B$ quite differently from the type of all total maps $A \to B$ in the category $\mathsf{Set}$ (i.e. {\tt \small A -> B}). This set of partial maps is a pair consisting of a domain predicate {\tt \small P : A -> Prop} together with a map of type {\tt \small forall x:A, P x -> B}, which takes two arguments: an `element' {\tt \small x} of the set {\tt \small A}, and a proof of the proposition {\tt \small P x}. 
 
@@ -147,20 +168,20 @@ Now, we formally consider a partial map with $m$ components as a map in the cate
 
 \section{Conclusion and Future Work}
 
-The framework we have built contains the necessary tools to study abstract recursion formally. Therefore, it gives us the advantage that we do not require to model partial functions using total functions or relations (or total functions built using relations) in order to study partial recursion using the (strongly normalizing) formal language CIC, with underlying intuitionistic logic. 
+The framework we have built contains the necessary tools to study abstract recursion formally. It has the advantage that we are not required to model partial functions using total functions or relations (or total functions built using relations) in order to study partial recursion using the (strongly normalizing) formal language CIC, with underlying intuitionistic logic. 
 
-There are a number of promising directions to advance this formalization, the most natural of which being the formalization of the Turing category-formulated abstraction of Rice's theorem, as well as the categorical concepts required for stating it formally, including joins and meets~\cite{Estonia}. Building on our framework even further, it would be an extremely interesting and innovative pursuit to use it to study computational complexity classes of total maps in Turing categories. Other options for building on this framework could be to formalize monoidal Turing categories (with differential structure) or conduct a formal
+There are a number of promising directions to advancing this formalization, the most natural of which being the formalization of the Turing category-formulated abstraction of Rice's theorem, as well as the categorical concepts required for stating it formally, including joins and meets, as emphasized in Cockett's lectures ~\cite{Estonia}. Building on our framework even further, it would be an extremely interesting and innovative pursuit to use it to study computational complexity classes of total maps in Turing categories. Other options for building on this framework could be to formalize monoidal Turing categories (with differential structure) or conduct a formal
 study more focused on the PCA's (which, recall, are computation-modeling structures
 at the core of every Turing category) and relationships between them. 
 
 
 
 %\begin{thebibliography}\label{thesisbib}
-	
-	\bibliographystyle{entcs}
-	\bibliography{thesisbib}
-	
-	
+
+\bibliographystyle{entcs}
+\bibliography{thesisbib}
+
+
 %\end{thebibliography}
 
 \end{document}
