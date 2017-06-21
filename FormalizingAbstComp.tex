@@ -26,7 +26,7 @@
 \begin{document}
 	\begin{frontmatter}
 %\title{A Framework for Studying Category\\ Theory and Computability}
-\title{Formalizing Abstract Computability:\\ Turing Categories in Coq} 
+\title{A Logical Framework for Studying Category Theory and Computability} 
 		\author[CS]{Polina Vinogradova\thanksref{emailpv}}
 		\author[CS,Math]{Amy P. Felty\thanksref{emailaf}}
 		\author[Math,CS]{Philip Scott\thanksref{emailps}}
@@ -38,7 +38,7 @@
 
 
 \begin{abstract} 
-  The concept of computable function (as developed by G\"odel, Church,
+  The concept of computable functions (as developed by G\"odel, Church,
   Turing, and Kleene in the 1930's) has been extensively studied,
   leading to the modern subject of recursive function theory. However
   % with the development of category-theoretic methods
@@ -73,7 +73,7 @@
   functions.
 \end{abstract}
 \begin{keyword}
-Category theory, Turing categories, computability, formalization, Calculus of Inductive Constructions (CIC), Coq proof assistant
+Category theory, Turing categories, Computability, Formalization, Calculus of Inductive Constructions (CIC), Coq proof assistant
 \end{keyword}		
 \end{frontmatter}
 
@@ -128,7 +128,7 @@ traditional recursion theory.
 %In addition to formalizing the categorical concepts, the next key part of this project is formalizing several examples of categories which contain the types of structure relevant to the theory of Turing categories. These examples serve as test cases for the verification of the validity of the formal versions of the definitions and propositions constructed in the formal language (and hence, the related formally proved results about them) as well as to formally study these categories. The main example we focus on in this project is the formalization of traditional computation on the natural numbers and the categorical interpretation of all the structure found therein in order to prove that these indeed conform to the Turing category model formalism. We base our formalization of traditional recursion theory on a formalization due to V. Zammit~\cite{SmnForm}. 
 
 In addition to formalizing the categorical concepts, we formalize
-several examples of categories. These examples provide validation of
+several examples of categories. These examples provide validation
 of our formalization approach and our formalized results as well as
 providing a mechanism to formally study these specific example
 categories. Our main example is the formalization of traditional
@@ -156,49 +156,60 @@ corresponding to each file discusses the informal definitions which
 the code formalizes, the challenges of reconciling the differences
 between formal and informal definitions, and existing related work.
 
-{\bfseries Restriction.} In order to model partial computation using category theory, we need to first axiomatize partiality in a category. In a Turing category, this has been done informally, in terms of a restriction combinator~\cite{Restriction}. A restriction combinator takes a map $f : A \to B$ in a category $\mathsf{C}$ to an idempotent $\overline{f} : A \to A$ in a way that satisfies certain rules, and  in a sense axiomatizes the notion of `domain' of $f$. When a category $\mathsf{C}$ admits such a combinator, it is called a {\em restriction category}. 
+{\bfseries Restriction.} In order to model partial computation using category theory, we need to first axiomatize partiality in a category. In a Turing category, this has been done informally, in terms of a restriction combinator~\cite{Restriction}. A restriction combinator axiomatizes partiality in terms of idempotents. In addition to a partiality structure, a category wherein we are able to axiomatize computation requires a version of cartesian structure which interacts well with the restriction structure. The partial versions of products and terminal objects are called restriction (or partial) products and restriction-terminal objects, respectively. A category which admits these structures is called a {\em cartesian restriction category.} 
 
-In addition to requiring a partiality structure, a category wherein we are able to axiomatize computation requires cartesian structure. Now, requiring strict cartesian structure to exist in a restriction category does not provide us with the correct machinery to perform computation. Thus, a weaker version of cartesian structure, which interacts well with restriction structure has been defined~\cite{Turing}. The restriction versions of products and terminal objects are called restriction (or partial) products and restriction-terminal objects, respectively. A category which admits these structures is called a {\em cartesian restriction category.} 
+%takes a map $f : A \to B$ in a category $\mathsf{C}$ to an idempotent $\overline{f} : A \to A$ in a way that satisfies certain rules, and  in a sense axiomatizes the notion of `domain' of $f$. When a category $\mathsf{C}$ admits such a combinator, it is called a {\em restriction category}. 
+%Now, requiring strict cartesian structure to exist in a restriction category does not provide us with the correct machinery to perform computation. Thus, a weaker version of cartesian structure, which interacts well with restriction structure has been defined~\cite{Turing}. 
 
-In order to formalize these concepts we have followed the style of the category theory Coq library we have selected, using type classes to formalize categorical notions. Type classes are a versatile and convenient way to encapsulate terms and propositions about them into a single term representing its informal counterpart, with a number of features particularly useful for reasoning about category theory. We have also formalized and proved a number of results about cartesian restriction structure. 
+In order to formalize these concepts we have followed the style of the category theory Coq library we have selected, using type classes to formalize categorical notions. Type classes are a versatile and convenient way to encapsulate terms and propositions about them into a single term representing its informal counterpart, with a number of features particularly useful for reasoning about category theory. We have also formalized and proved a number of results about cartesian restriction structure, including: 
+
+\begin{enumerate}
+	\item A restriction terminal object in a cartesian restriction category is a (true) terminal object in its total subcategory, and a corresponding result about restriction products~\cite{Turing};
+	
+	\item Restriction products in a cartesian restriction category are (true) products in its total subcategory~\cite{Turing};
+	
+	\item A cartesian category with $\overline{f} = 1$ for all maps $f$ is a cartesian restriction category~\cite{Turing};
+	
+	\item In an embedding-retraction pair $(m, r)$, $m$ is a total map~\cite{Restriction};
+	
+	\item A ranges and retractions lemma from~\cite{MyThesis}.
+\end{enumerate}
 
 %For example, the type class representing the notion of a restriction combinator takes a parameter {\tt C : Category}, which will be the category in which the restriction combinator is being defined. In the body of the type class, there is a term {\tt rc} which, given {\tt a b : C}, and a map {\tt f : Hom a b} returns a map of type {\tt Hom a a}. In addition, in the body of the class, there are terms {\tt rc1, rc2, ...}, the types of which correspond the axioms {\tt rc} must satisfy. The cartesian restriction structure is formalized using a similar approach, as are notions of a total subcategory, trivial restriction structure, etc~\cite{Turing}. 
 
-%\begin{enumerate}
-%\item A restriction terminal object in a cartesian restriction category is a (true) terminal object in its total subcategory, and a corresponding result about restriction products~\cite{Turing};
-	
-%\item Restriction products in a cartesian restriction category are (true) products in its total subcategory~\cite{Turing};
-	
-%\item A cartesian category with $\overline{f} = 1$ for all maps $f$ is a cartesian restriction category~\cite{Turing};
-	
-%\item In an embedding-retraction pair $(m, r)$, $m$ is a total map~\cite{Restriction};
-	
-%\item A ranges and retractions lemma from~\cite{MyThesis}.
-%\end{enumerate}
 
-{\bfseries PCA and CompA.} The underlying computational structure in a Turing category is a non-associative algebra called a partial combinatory algebra (abbreviated PCA), which consists of a pair $(A, \bullet)$ of an object $A \in \mathsf{C}$ and a map $A \times A \to A$ in a cartesian restriction category $\mathsf{C}$, as well a combinatory completeness condition that $(A, \bullet)$ must satisfy in this category. Given an object $A$ in an arbitrary restriction category $\mathsf{C}$, the full subcategory of all objects of the form $A^n$ is denoted Comp($A$), or Comp($\mathbb{A}$), whenever a partial combinatory algebra structure $(A, \bullet)$ exists in $\mathsf{C}$ (and is therefore in Comp($\mathbb{A}$) also). The Karoubi envelope, i.e., the category of formally split idempotents, of the category Comp($A$) is denoted Split(Comp($A$)), or Split(Comp($\mathbb{A}$)), whenever $\mathsf{C}$ admits a PCA. We have formalized Comp($A$) and Split(Comp($A$)) as cartesian restriction categories. Furthermore, in the process, we have discovered additional conditions required to show intuitionistically that Split(Comp($A$)) is a cartesian restriction category. 
+{\bfseries PCA and CompA.} The underlying computational structure in a Turing category is a non-associative algebra called a partial combinatory algebra (abbreviated PCA), which consists of a pair $(A, \bullet)$ of an object $A \in \mathsf{C}$ and a map $A \times A \to A$ in a cartesian restriction category $\mathsf{C}$, as well a combinatory completeness condition that $(A, \bullet)$ must satisfy in this category. Given an object $A$ in an arbitrary restriction category $\mathsf{C}$, the full subcategory of all objects of the form $A^n$ is denoted Comp($A$). We have formalized the definition of PCA, as well as Comp($A$) and Split(Comp($A$)) (the Karoubi envelope of Comp($A$)) as cartesian restriction categories. Furthermore, in the process, we have discovered additional conditions required to show intuitionistically that Split(Comp($A$)) is a cartesian restriction category. 
 
-{\bfseries Turing.} A Turing category is a category that contains a special kind of structure that models computation. A category $\mathsf{T}$ is Turing if it contains an object $A \in \mathsf{T}$, called a Turing object, as well as a morphism $\bullet : A \times A \to A$, called a Turing morphism, such that each map in $\mathsf{T}$ factors via $\bullet$ in a specific way, similar to the factorization of maps within cartesian closed categories \cite{HOCL}. Each object in $\mathsf{T}$ is a retract of the Turing object. Now the pair $(A, \bullet)$ is called a Turing structure and constitutes a PCA. This structure is not necessarily unique in $\mathsf{T}$. We have formalized Turing structure along with a number of results about it.
 
-%\begin{enumerate}
-%\item Every object in a Turing category is a retract of a Turing object~\cite{Turing};
-%\item An object $B$ in a Turing category with Turing object $A$ is Turing if and only if it is a retract of $A$~\cite{Turing};
+%, or Comp($\mathbb{A}$), whenever a partial combinatory algebra structure $(A, \bullet)$ exists in $\mathsf{C}$ (and is therefore in Comp($\mathbb{A}$) also). The Karoubi envelope, i.e., the category of formally split idempotents, of the category Comp($A$) is denoted Split(Comp($A$)), or Split(Comp($\mathbb{A}$)), whenever $\mathsf{C}$ admits a PCA. 
+
+{\bfseries Turing.} A Turing category is a category that contains a special kind of structure that models computation. A category $\mathsf{T}$ is Turing if it contains an object $A \in \mathsf{T}$, called a Turing object, as well as a morphism $\bullet : A \times A \to A$, called a Turing morphism, such that each map in $\mathsf{T}$ factors via $\bullet$ in a specific way, similar to the factorization of maps within cartesian closed categories~\cite{HOCL}. We have formalized Turing structure along with a number of results about it, including:
+
+ %Each object in $\mathsf{T}$ is a retract of the Turing object. Now the pair $(A, \bullet)$ is called a Turing structure and constitutes a PCA. This structure is not necessarily unique in $\mathsf{T}$.
+
+\begin{enumerate}
+\item Every object in a Turing category is a retract of a Turing object~\cite{Turing};
+\item An object $B$ in a Turing category with Turing object $A$ is Turing if and only if it is a retract of $A$~\cite{Turing};
 	
-%\item A CCC with trivial restriction structure and an object $A$ of which every object is a retract is a Turing category;
-%\item The halting domain is $m$-complete~\cite{Turing};
+\item A CCC with trivial restriction structure and an object $A$ of which every object is a retract is a Turing category;
+\item The halting domain is $m$-complete~\cite{Turing};
 	
-%\item An equivalent characterization of Turing categories in terms of the Turing morphism and object embeddings~\cite{Turing}.
+\item An equivalent characterization of Turing categories in terms of the Turing morphism and object embeddings~\cite{Turing}.
 	
-%\end{enumerate}
+\end{enumerate}
 
 In addition, we have formalized the relationship between a Turing category $\mathsf{T}$ with a Turing object $A$ and the related categories Comp($A$) and Split(Comp($A$)). These categories embed in the following order:
 Comp($\mathbb{A}$) $\subseteq$ $\mathsf{T}$ $\subseteq$ Split(Comp($\mathbb{A}$)).
 
-{\bfseries Range.} Range structure in a category can be expressed in terms of another type of combinator which (whenever it exists in a category) is in a sense dual to the restriction combinator~\cite{RangeI}. The range combinator takes a map $f : A \to B$ to a map $\hat{f} : B \to B$, and, as with the restriction combinator, satisfies a number of axioms. It is related to the notion of open maps in a category, in that whenever all maps in a given category are open, it is a range category. We have chosen to formalize this particular abstraction because in the process of formalizing the motivating examples of the categories of sets and partial maps $\mathsf{Par}$ and the category of computable maps between $n$-fold products of the natural numbers, Comp($\mathbb{N}$), it became apparent that the process of representing partiality using a total formal language presented one of the biggest challenges as well as one of the greatest curiosities. We have formalized a number of results regarding the interactions between range structure and embedding-retraction pairs, as well as a criterion for a Turing category to admit cartesian range structure~\cite{MyThesis}.
+{\bfseries Range.} Range structure in a category can be expressed in terms of another type of combinator which (whenever it exists in a category) is in a sense dual to the restriction combinator~\cite{RangeI}. The range combinator takes a map $f : A \to B$ to a map $\hat{f} : B \to B$, and, as with the restriction combinator, satisfies a number of axioms. It is related to the notion of open maps in a category, in that whenever all maps in a given category are open, it is a range category. We have chosen to formalize this particular abstraction because in the process of formalizing the motivating examples, %of the categories of sets and partial maps $\mathsf{Par}$ and the category of computable maps between %$n$-fold products of the natural numbers, Comp($\mathbb{N}$), 
+it became apparent that representing partiality using a total formal language presented one of the biggest challenges as well as one of the greatest curiosities. We have formalized a number of results regarding the interactions between range structure and embedding-retraction pairs, as well as a criterion for a Turing category to admit cartesian range structure~\cite{MyThesis}.
 
 {\bfseries Par\_Cat.} The category $\mathsf{Par}$ is the motivating example for the categorical structure discussed above, including cartesian restriction and cartesian range structure, but not including Turing or PCA structure. Due to the total nature of computation in the CIC, it is impossible to directly represent a partial map. For this reason, we must define the type of the set of all maps $A \to B$ quite differently from the type of all total maps $A \to B$ in the category $\mathsf{Set}$ (i.e., {\tt A -> B}). This set of partial maps is a pair consisting of a domain predicate {\tt P : A -> Prop} together with a map of type {\tt forall x:A, P x -> B}, which takes two arguments: an `element' {\tt x} of the set {\tt A}, and a proof of the proposition {\tt P x}. 
 
-Having defined the type of partial maps in this way, we proceed to instantiating the {\tt Category} type class with the required objects, morphisms and proofs of associativity, etc. Using this category, we can now instantiate the restriction combinator. The restriction of a given map {\tt f : Hom a b} has the same domain predicate {\tt P} as the map {\tt f} itself, but the restriction of {\tt f} evaluated at {\tt x : A} and a proof {\tt pf : P x}. Note that once we have defined the restriction combinator mapping, we must also prove that it satisfies the required axioms in order to complete the instantiation. Following a similar format, we have also instantiated $\mathsf{Par}$ as a cartesian restriction category and a cartesian range category (i.e., defined all the required maps, objects, and completed the accompanying proofs).
+Having defined the type of partial maps in this way, we proceeded to instantiating the {\tt Category} type class with the required objects, morphisms and proofs of associativity, etc. Following a similar format, we have also instantiated $\mathsf{Par}$ as a cartesian restriction category and a cartesian range category (i.e., defined all the required maps, objects, and completed the accompanying proofs).
+
+%Using this category, we can now instantiate the restriction combinator. 
+%The restriction of a given map {\tt f : Hom a b} has the same domain predicate {\tt P} as the map {\tt f} itself, but the restriction of {\tt f} evaluated at {\tt x : A} and a proof {\tt pf : P x}. Note that once we have defined the restriction combinator mapping, we must also prove that it satisfies the required axioms in order to complete the instantiation. 
 
 %More specifically, we are not using the language to represent a specific (explicitly defined) map, but rather we must be able compare two arbitrary maps, presenting a proof of an equality judgment. 
 {\bfseries CompN\_Cat.} The category $\mathsf{Par}$ contains a subcategory of maps that are partial recursive, i.e., computable by a map which can be expressed in terms of the partial recursive constructors (zero, successor, projection, recursion, substitution and minimalization~\cite{Computability}). We use this (informally-presented) definition of formal computation as the basis for our formalization of the category of computable maps. We build our subcategory using an existing fomalization of this presentation of computation as well as the proof of the $S^m_n$ theorem completed using this definition~\cite{SmnForm}.
@@ -214,13 +225,9 @@ semantics are given as an inductively-defined relation, whose header is:
 informally, the partial recursive function {\tt f\_prf} applied to the
 list of natural numbers {\tt ln} outputs {\tt n}. Note that this
 `output' is unique, so we are able to build a partial map in the {\tt
-  Par\_Cat} sense, described above. In order to build a map that is
-Kleene-equal to the computation a particular {\tt f\_prf : prf}
-represents, we use the {\tt converges\_to} relation to give the domain
-predicate, and add a special case of an axiom of choice to select,
-given a list {\tt ln: list nat}, a natural number as output \textit{in
-  the case when there is a proof that this output necessarily exists}
-(i.e., a proof {\tt pf : exists n, converges\_to f\_prf ln n}).
+  Par\_Cat} sense, described above, which corresponds to a given {\tt prf} term. 
+%We use this fact to build a category 
+%In order to build a map that is Kleene-equal to the computation a particular {\tt f\_prf : prf} represents, we use the {\tt converges\_to} relation to give the domain predicate, and add a special case of an axiom of choice to select, given a list {\tt ln: list nat}, a natural number as output \textit{in   the case when there is a proof that this output necessarily exists} (i.e., a proof {\tt pf : exists n, converges\_to f\_prf ln n}).
 
 Now, we formally consider a partial map with $m$ components as a map in the category of partial recursive maps whenever there is a proof that each of its components is Kleene-equal to a {\tt prf} computation. This category inherits cartesian restriction structure defined in larger category, {\tt Par\_Cat}, however, we have additionally defined a Turing object (i.e., the natural numbers) and proved that the necessary diagrams commute (as maps in the larger {\tt Par\_Cat} category), thus demonstrating that it is indeed a Turing category.
 
