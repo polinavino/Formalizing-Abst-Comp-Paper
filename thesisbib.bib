@@ -1,8 +1,18 @@
-\bibliography{Bibliography} 
+\bibliography{References} 
+
+
+@unpublished{Estonia,
+	Author = {Robin Cockett},
+	Year = {2010},
+	Title = {Turing Categories and Computability},
+	Note = {Slides from 15th Estonian Winter School in Computer Science (EWSCS)},
+	url = {http://cs.ioc.ee/ewscs/2010/cockett/estonia-slides-4.pdf}
+}
+
 
 @PhdThesis{MyPhD,
 	author = {Polina Vinogradova},
-	title = {Formalizing Abstract Computability: Turing Categories in Coq},
+	title = {Formalizing Abstract Computability: Turing Categories in {Coq}},
 	school = {University of Ottawa},
 	year = {2017},
 	OPTkey = {key},
@@ -43,8 +53,7 @@
 @Inbook{LMog,
 	author="Longo, G.
 	and Moggi, E.",
-	editor="Chytil, M. P.
-	and Koubek, V.",
+
 	title="G{\"o}del numberings, principal morphisms, combinatory algebras",
 	bookTitle="Mathematical Foundations of Computer Science 1984: Proceedings, 11th Symposium Praha, Czechoslovakia September 3--7, 1984",
 	year="1984",
@@ -94,10 +103,10 @@
 	publisher={Springer New York}
 }
 
-
+ 
 
 @PHDTHESIS{russelGodel,
-	AUTHOR       = "Russell O’Connor",
+	AUTHOR       = "Russell O'Connor",
 	TITLE        = "Incompleteness and Completeness: Formalizing Logic and Analysis in Type Theory",
 	SCHOOL       = "Institute for Computing and Information Science, Faculty of Science, Radboud University Nijmegen",
 	YEAR         = "2009",
@@ -106,17 +115,9 @@
 	NOTE         = ""
 }  
 
-@unpublished{Estonia,
-	Author = {Robin Cockett},
-	Year = {2010},
-	Title = {Turing Categories and Computability},
-	Note = {Slides from 15th Estonian Winter School in Computer Science (EWSCS)},
-	url = {http://cs.ioc.ee/ewscs/2010/cockett/estonia-slides-4.pdf}
-}
-
 @article{paulsonGodel,
- author = {Paulson, Lawrence C.},
- title = {A Mechanised Proof of G\"{o}Del's Incompleteness Theorems Using Nominal Isabelle},
+ author = {Lawrence C. Paulson},
+ title = {A Mechanised Proof of {G}\"{o}Del's Incompleteness Theorems Using Nominal {I}sabelle},
  journal = {J. Autom. Reason.},
  issue_date = {June      2015},
  volume = {55},
@@ -135,26 +136,23 @@
 } 
 
 
-@Inbook{CIC,
+@Inproceedings{CIC,
 author="Huet, G{\'e}rard",
-chapter="Induction principles formalized in the calculus of constructions",
-title="TAPSOFT '87: Proceedings of the International' Joint Conference on Theory and Practice of Software Development Pisa, Italy, March 23--27, 1987",
+chapter= {Induction principles formalized in the calculus of constructions},
+title="TAPSOFT 1987: Proceedings of the International Joint Conference on Theory and Practice of Software Development",
 year="1987",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="276--286"
+pages="276--286",
 }
 
-@Inbook{DisjSet,
-author="Chargu{\'e}raud, Arthur
-and Pottier, Fran{\c{c}}ois",
+@INPROCEEDINGS{DisjSet,
+author="Arthur Chargu{\'e}raud
+and Fran{\c{c}}ois Pottier",
 editor="Urban, Christian
 and Zhang, Xingyuan",
-chapter="Machine-Checked Verification of the Correctness and Amortized Complexity of an Efficient Union-Find Implementation",
-title="Interactive Theorem Proving: 6th International Conference, ITP 2015, Nanjing, China, August 24-27, 2015, Proceedings",
+chapter = {Machine-Checked Verification of the Correctness and Amortized Complexity of an Efficient Union-Find Implementation},
+title="Proceedings of the Interactive Theorem Proving: 6th International Conference",
 year="2015",
 publisher="Springer International Publishing",
-address="Cham",
 pages="137--153",
 isbn="978-3-319-22102-1",
 doi="10.1007/978-3-319-22102-1_9",
@@ -162,22 +160,18 @@ url="http://dx.doi.org/10.1007/978-3-319-22102-1_9"
 }
 
 
-@MISC{FourColourC,
-    author = {Georges Gonthier},
-    title = {Formal Proof -- The Four-Color Theorem},
-    year = {2008}
-}
 
-@article{CompCert,
-  author    = {Xavier Leroy},
-  title     = {A formally verified compiler back-end},
-  journal   = {CoRR},
-  volume    = {abs/0902.2137},
-  year      = {2009},
-  url       = {http://arxiv.org/abs/0902.2137},
-  timestamp = {Mon, 05 Dec 2011 18:05:24 +0100},
-  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/abs-0902-2137},
-  bibsource = {dblp computer science bibliography, http://dblp.org}
+@INPROCEEDINGS{CompCert,
+  author = {Sandrine Blazy and Xavier Leroy},
+  title = {Formal verification of a memory model for
+                         {C}-like imperative languages},
+  booktitle = {International Conference on
+                         Formal Engineering Methods (ICFEM 2005)},
+  year = 2005,
+  volume = 3785,
+  series = {Lecture Notes in Computer Science},
+  publisher = {Springer},
+  pages = {280--299},
 }
 
 @MASTERSTHESIS{MyThesis,
@@ -188,26 +182,33 @@ url="http://dx.doi.org/10.1007/978-3-319-22102-1_9"
 	MONTH        = {March}
 }
 
-@inproceedings{ZammitHOL,
-  title={A Mechanisation of Computability Theory in HOL},
-  author={Vincent Zammit},
-  booktitle={TPHOLs},
-  year={1996}
-}
+@INPROCEEDINGS{ZammitHOL,
+ author = {Vincent Zammit},
+ title = {A Mechanisation of Computability Theory in {HOL}},
+ booktitle = {Proceedings of the 9th International Conference on Theorem Proving in Higher Order Logics},
+ series = {TPHOLs '96},
+ isbn = {3-540-61587-3},
+ pages = {431--446},
+ numpages = {16},
+ url = {http://dl.acm.org/citation.cfm?id=646523.694703},
+ acmid = {694703},
+ publisher = {Springer-Verlag},
+ address = {London, UK, UK},
+ year = {1996}
+} 
 
-@inproceedings{HolCoq,
- author = {Zammit, Vincent},
- title = {A Comparative Study of Coq and HOL},
+@INPROCEEDINGS{HolCoq,
+ author = {Vincent Zammit},
+ title = {A Comparative Study of {C}oq and {HOL}},
  booktitle = {Proceedings of the 10th International Conference on Theorem Proving in Higher Order Logics},
  series = {TPHOLs '97},
- year = {1997},
  isbn = {3-540-63379-0},
  pages = {323--337},
  numpages = {15},
  url = {http://dl.acm.org/citation.cfm?id=646524.694725},
  acmid = {694725},
  publisher = {Springer-Verlag},
- address = {London, UK, UK},
+ year = {1997}
 } 
 
 
@@ -226,27 +227,23 @@ author = "Robert L. Constable and Scott F. Smith",
 }
 
 @ARTICLE{setoidsCat,
-   author = {{Palmgren}, E. and {Wilander}, O.},
+   author = {Erik Palmgren and Olov Wilander},
     title = "{Constructing categories and setoids of setoids in type theory}",
-  journal = {ArXiv e-prints},
-archivePrefix = "arXiv",
-   eprint = {1408.1364},
- primaryClass = "math.LO",
- keywords = {Mathematics - Logic},
-     year = 2014,
-    month = aug,
-   adsurl = {http://adsabs.harvard.edu/abs/2014arXiv1408.1364P},
-  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+journal = "Logical Methods in Computer Science",
+volume = "10",
+number = "3:25",
+pages = "1-14",
+year = "2014",
 }
 
-
-@article{timanyNewLib,
-  author    = {Amin Timany and
+@INPROCEEDINGS{timanyNewLib,
+	AUTHOR       = {Amin Timany and
                Bart Jacobs},
-  title     = {Category Theory in Coq 8.5},
-  journal   = {CoRR},
-  volume    = {abs/1505.06430},
-  year      = {2015},
+  title     = {Category Theory in {Coq} 8.5},
+  BOOKTITLE = {{The 7th {Coq} Workshop}},
+  ADDRESS = {Sophia Antipolis, France},
+  YEAR = {2015},
+  MONTH = Jun,
   url       = {http://arxiv.org/abs/1505.06430},
   timestamp = {Thu, 09 Jul 2015 16:49:52 +0200},
   biburl    = {http://dblp.uni-trier.de/rec/bib/journals/corr/TimanyJ15},
@@ -254,7 +251,7 @@ archivePrefix = "arXiv",
 }
 
 @BOOK{HOCL,
-	AUTHOR       = "J. Lambek and P. J. Scott.",
+	AUTHOR       = "Joachim Lambek and Philip J. Scott",
 	TITLE        = "Introduction to Higher Order Categorical Logic",
 	PUBLISHER    = "Cambridge University Press",
 	YEAR         = "1986",
@@ -268,7 +265,7 @@ archivePrefix = "arXiv",
 
 
 @article{CoqCalc,
- author = {Coquand, Thierry and Huet,  G{\'e}rard},
+ author = {Thierry Coquand and G{\'e}rard Huet},
  title = {The Calculus of Constructions},
  journal = {Inf. Comput.},
  issue_date = {February/March 1988},
@@ -288,12 +285,11 @@ archivePrefix = "arXiv",
 
 
 @ARTICLE{LambdaCube,
-	AUTHOR       = "H.P. Barendregt",
+	AUTHOR       = "Henk P. Barendregt",
 	TITLE        = "Introduction to generalized type systems",
 	JOURNAL      = "Journal of Functional Programming",
 	YEAR         = "1991",
-	VOLUME       = "",
-	NUMBER       = "1(2)",
+	VOLUME       = {1(2)},
 	PAGES        = "125-154",
 	MONTH        = "April",
 	NOTE         = ""
@@ -303,7 +299,7 @@ archivePrefix = "arXiv",
 
 @book{girard1989proofs,
   title={Proofs and Types},
-  author={Girard, J.Y. and Lafont, Y. and Taylor, P.},
+  author={Jean-Yves Girard and Yves Lafont and Paul Taylor},
   isbn={9780521371810},
   lccn={gb89006177},
   series={Cambridge Tracts in Theoretical Computer Science},
@@ -314,48 +310,74 @@ archivePrefix = "arXiv",
 
 
 @techreport{SmnForm,
-   title = "{A} proof of the [Smn] theorem in {COQ}",
-   author = "Zammit, Vincent",
-   institution = "University of Kent (Canterbury, GB)",
-   number = "TR 09-97",
-   address = "Canterbury",
-   url = "http://opac.inria.fr/record=b1041068",
-   year = 1997
+           month = {March},
+          author = {Vincent Zammit},
+         address = {The University of Kent, Canterbury, Kent, UK},
+           title = {A Proof of the {S-m-n} theorem in {Coq}},
+            type = {Technical report},
+       publisher = {University of Kent},
+     institution = {The Computing Laboratory},
+            year = {1997},
+        keywords = {Computability, Theorem Proving, Formalized Mathematics},
+             note = {\url{http://kar.kent.ac.uk/21524/}}
 }
-
 
 @UNPUBLISHED{AgdaRestCat,
-	AUTHOR       = "J. Chapman, T. Uustalu, N. Veltri",
-	TITLE        = "Formalizing restriction categories",
-	NOTE         = "",
-	MONTH        = "",
-	YEAR         = ""
+author = {James Chapman and Tarmo Uustalu and Niccolò Veltri},
+	title = {Formalizing Restriction Categories},
+	journal = {Journal of Formalized Reasoning},
+	volume = {10},
+	number = {1},
+	year = {2017},
+	keywords = {}
 }
 
-@UNPUBLISHED{FeitThm,
-	AUTHOR       = "Georges Gonthier et al.",
-	TITLE        = "Feit-Thompson theorem has been totally checked in Coq",
-	NOTE         = " Msr-inria.inria.fr. Retrieved 2012-09-25",
-	MONTH        = "09",
-	YEAR         = "2012"
+@Inbook{FeitThm,
+author="Gonthier, Georges
+and Asperti, Andrea
+and Avigad, Jeremy
+and Bertot, Yves
+and Cohen, Cyril
+and Garillot, Fran{\c{c}}ois
+and Le Roux, St{\'e}phane
+and Mahboubi, Assia
+and O'Connor, Russell
+and Ould Biha, Sidi
+and Pasca, Ioana
+and Rideau, Laurence
+and Solovyev, Alexey
+and Tassi, Enrico
+and Th{\'e}ry, Laurent",
+editor="Blazy, Sandrine
+and Paulin-Mohring, Christine
+and Pichardie, David",
+title="A Machine-Checked Proof of the Odd Order Theorem",
+bookTitle="Interactive Theorem Proving: 4th International Conference, ITP 2013, Rennes, France, July 22-26, 2013. Proceedings",
+year="2013",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="163--179",
+isbn="978-3-642-39634-2",
+doi="10.1007/978-3-642-39634-2_14",
+url="http://dx.doi.org/10.1007/978-3-642-39634-2_14"
 }
 
 
 @ARTICLE{FourColForm,
-	AUTHOR       = " Gonthier, Georges",
-	TITLE        = "Formal Proof—The Four-Color Theorem",
+	AUTHOR       = "Gonthier, Georges",
+	TITLE        = "Formal Proof {---} The Four-Color Theorem",
 	JOURNAL      = "Notices of the American Mathematical Society",
 	YEAR         = "2008",
 	VOLUME       = "55",
 	NUMBER       = "11",
-	PAGES        = "1382–1393",
+	PAGES        = "1382 - 1393",
 	MONTH        = "",
 	NOTE         = ""
 }
 
 @book{Category,
   title={Category Theory},
-  author={Awodey, S.},
+  author={Awodey, Steve},
   isbn={9780191513824},
   series={Oxford Logic Guides},
   url={https://books.google.ca/books?id=IK\_sIDI2TCwC},
@@ -363,15 +385,26 @@ archivePrefix = "arXiv",
   publisher={Ebsco Publishing}
 }
 
+@article{freeLogic,
+  author    = {Christoph Benzm{\"{u}}ller and
+               Dana S. Scott},
+  title     = {Axiomatizing Category Theory in Free Logic},
+  journal   = {Computing Research Repository},
+  volume    = {abs/1609.01493},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1609.01493},
+  timestamp = {Mon, 03 Oct 2016 17:51:10 +0200},
+  note        = {\url{http://dblp.uni-trier.de/rec/bib/journals/corr/BenzmullerS16}}
+}
+
 @misc{typeCl,
-  TITLE = {{A gentle introduction to type classes and relations in Coq}},
+  TITLE = {{A gentle introduction to type classes and relations in {Coq}}},
   AUTHOR = {Cast{\'e}ran, Pierre and Sozeau, Matthieu},
-  URL = {https://hal.archives-ouvertes.fr/hal-00702455},
-  NOTE = {This document presents the main features of type classes and user-defined relations in the Coq proof assistant. Available at http://www.labri.fr/perso/casteran/CoqArt/TypeClassesTut/typeclassestut.pdf},
   YEAR = {2012},
   MONTH = May,
   HAL_ID = {hal-00702455},
   HAL_VERSION = {v1},
+  note        = {\url{https://hal.archives-ouvertes.fr/hal-00702455}}
 }
 
 @book{coqArt,
@@ -394,11 +427,10 @@ archivePrefix = "arXiv",
 @INPROCEEDINGS{FstLib,
     author = { G{\'e}rard Huet and Amokrane Saïbi},
     title = {Constructive Category Theory},
-    booktitle = {Joint CLICS-TYPES Workshop on Categories and Type Theory, Goteborg},
+    booktitle = {Joint {CLICS-TYPES} Workshop on Categories and Type Theory, Goteborg},
     year = {1998},
     publisher = {MIT Press}
 }
-
 
 @book{UnivF,
   title={Homotopy Type Theory: Univalent Foundations of Mathematics},
@@ -407,19 +439,7 @@ archivePrefix = "arXiv",
   year={2013},
   publisher={Univalent Foundations program}
 }
-@CONFERENCE{JacobsLib,
-	AUTHOR       = "Amin Timany and Bart Jacobs",
-	TITLE        = "Category Theory in Coq 8.5",
-	BOOKTITLE    = "The 7th Coq Workshop ",
-	YEAR         = "2015",
-	EDITOR       = "",
-	PAGES        = "",
-	ORGANIZATION = "",
-	PUBLISHER    = "",
-	ADDRESS      = "Sophia Antipolis, France",
-	MONTH        = "June",
-	NOTE         = ""
-}
+
 
 @book{typesNProg,
  author = {Pierce, Benjamin C.},
@@ -440,12 +460,24 @@ archivePrefix = "arXiv",
   plclub = {Yes},
   bcp = {Yes},
   keys = {poplmark,books},
-  ebook = {http://www.cis.upenn.edu/~bcpierce/sf},
+  note = {\url{http://www.cis.upenn.edu/~bcpierce/sf}},
   japanese = {http://proofcafe.org/sf}
 }
 
+@book{Cantor,
+  title={Naive Set Theory},
+  author={Halmos, Paul R.},
+  isbn={9780387900926},
+  lccn={74010687},
+  series={Undergraduate Texts in Mathematics},
+  url={https://books.google.ca/books?id=x6cZBQ9qtgoC},
+  year={1998},
+  publisher={Springer New York}
+}
+
+
 @ARTICLE{Turing,
-    author = {J.R.B. Cockett and P.J.W. Hofstra},
+    author = {Robin Cockett and Pieter Hofstra},
    title = {Introduction to {T}uring Categories},
    year = {2008},
 	journal = {Annals of Pure and Applied Logic},
@@ -453,38 +485,47 @@ archivePrefix = "arXiv",
 	pages = {183-209}
 }
 
+
 @ARTICLE{RangeI,
-    author = {J.R.B. Cockett{,} Xiuzhan Guo and Pieter Hofstra},
-   title = "Range Categories {I}",
-	note = {Submitted for publication, available at ``http://mysite.science.uottawa.ca/phofstra/"}
+	AUTHOR       = {Robin Cockett and Xiuzhan Guo and Pieter Hofstra},
+	TITLE        = {Range Categories {II}: Towards Regularity},
+	JOURNAL      = "Theory and Applications of Categories",
+	YEAR         = "2012",
+	VOLUME       = "26",
+	NUMBER       = "18",
+	PAGES        = "453-500",
 }
-
-@ARTICLE{RangeII,
-    author = {J.R.B. Cockett and Pieter Hofstra},
-   title = {Range Categories {II}: Towards Regularity},
-	note = {Submitted for publication in 2011, available at ``http://mysite.science.uottawa.ca/phofstra/"}
-}
-
 
 @ARTICLE{Winskel,
-    author = {A. Joyal{,} M. Nielson{,} G. Winskel},
+    author = {Andr\'e Joyal and Mogens Nielson and Glynn Winskel},
    title = {Bisimulation and open maps },
    year = {1993},
-	journal = {Proceedings of Eighth Annual IEEE Symposium on Logic in Computer Science},
+	journal = {Proceedings of Eighth Annual {IEEE} Symposium on Logic in Computer Science},
 	volume = {LICS '93},
 	pages = {418 - 427}
 }
 
 @ARTICLE{PCA,
-    author = {Pieter J.W. Hofstra},
-   title = {Partial Combinatory Algebras and Realizability Toposes},
-   year = {2004}
+    author = {Pieter Hofstra and Jaap van Oosten},
+   journal = {Math. Proc. Cambridge Philos. Soc.},
+	VOLUME       = "134",
+	NUMBER       = "3",
+ PAGES        = "445 - 463",
+   title = {Ordered partial combinatory algebras},
+   year = {2003}
 }
 
-
+@UNPUBLISHED{PLA,
+	AUTHOR       = "Robin Cockett and Pieter Hofstra",
+	TITLE        = "An introduction to partial lambda algebras",
+	NOTE         = "",
+	MONTH        = "February",
+	YEAR         = "2007",
+  note = {\url{http://mysite.science.uottawa.ca/phofstra/lambda.pdf}}
+}
 
 @book{Computability,
-    author    = {N.J. Cutland},
+    author    = {Nigel Cutland},
     title     = {Computability: An introduction to recursive function theory},
     year      = {1980},
     publisher = {Cambridge University Press}
@@ -494,7 +535,7 @@ archivePrefix = "arXiv",
 
 
 @Book{CatAlleg,
-	author = {Peter J. Freyd{,} Andrej Scedrov},
+	author = {Peter J. Freyd and Andrej Scedrov},
 	title = {Categories, Allegories},
 	series = {North-Holland Mathematical Library},
 	publisher = {Elsevier},
@@ -515,7 +556,7 @@ archivePrefix = "arXiv",
 
 
 @Article{Restriction,
-author = {J.R.B Cockett and S. Lack},
+author = {Robin Cockett and Stephen Lack},
 title = {Restriction categories {I}},
 journal = {Theoretical Computer Science},
 year = {2002},
